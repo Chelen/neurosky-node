@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mindwaveApp')
-  .controller('MainCtrl', function ($http, neuroSocket) {
+  .controller('MainCtrl', function ($http, socket) {
       var self = this;
 
       self.awesomeThings = [];
@@ -21,16 +21,16 @@ angular.module('mindwaveApp')
 
 
     self.startListening = function(){
-      neuroSocket.emit('startMindwave', "startinnnng!");
+      socket.emit('startMindwave', "startinnnng!");
     };
 
     self.stopListening = function(){
-      neuroSocket.emit('stopMindwave', "stopiiing!");
+      socket.emit('stopMindwave', "stopiiing!");
     };
 
     self.count = 0;
 
-      neuroSocket.on('data', function(data){
+      socket.on('data', function(data){
         if (data.poorSignalLevel || data.poorSignalLevel === 0) self.status = (200 - data.poorSignalLevel)/2;
         if (data.eegPower){
           self.eegValues = [];

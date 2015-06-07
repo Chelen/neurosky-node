@@ -16,7 +16,6 @@ angular.module('mindwaveApp', [
 
     $locationProvider.html5Mode(true);
   })
-  .factory('neuroSocket', function (socketFactory) {
+  .factory('socket', function (socketFactory) {
     return socketFactory();
   });
-
