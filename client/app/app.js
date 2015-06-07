@@ -5,6 +5,7 @@ angular.module('mindwaveApp', [
   'ngResource',
   'ngSanitize',
   'btford.socket-io',
+  'chart.js',
   'ngRoute'
 ])
   .config(function ($routeProvider, $locationProvider) {

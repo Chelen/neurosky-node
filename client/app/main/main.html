@@ -17,34 +17,22 @@
       <!--</ul>-->
     <!--</div>-->
 
-  <div class="process">
-    <div class="process-row">
-      <div class="process-step">
-        <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-user fa-3x"></i></button>
-        <p>Personal data</p>
-      </div>
-      <div class="process-step">
-        <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-comments-o fa-3x"></i></button>
-        <p>We confirm you</p>
-      </div>
-      <div class="process-step">
-        <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-thumbs-up fa-3x"></i></button>
-        <p>Tiger comes</p>
-      </div>
-      <div class="process-step">
-        <button type="button" class="btn btn-success btn-circle" disabled="disabled"><i class="fa fa-eur fa-3x"></i></button>
-        <p>You Pay</p>
-      </div>
-    </div>
-  </div>
+
   </div>
 
   <button class="btn btn-primary" ng-click="mainCtrl.startListening()"> Start !</button>
+  <button class="btn btn-danger" ng-click="mainCtrl.stopListening()"> Stop !</button>
 
   <div class="progress">
     <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: {{mainCtrl.status}}%">
     </div>
   </div>
+
+
+<canvas id="radar" class="chart chart-radar" data="mainCtrl.eegValues" labels="mainCtrl.eegLabels"></canvas>
+
+
+
 
 
 </div>

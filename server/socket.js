@@ -25,8 +25,11 @@ module.exports = function(app) {
     io.on('connection', function(socket){
         console.log('a user connected');
         socket.on('startMindwave', function(msg){
-            console.log('message: ' + msg);
             client.connect();
+        });
+
+        socket.on('stopMindwave', function(msg){
+          client.disconnect();
         });
     });
 
