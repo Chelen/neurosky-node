@@ -5,6 +5,6 @@ angular.module('mindwaveApp')
     $routeProvider
       .when('/charts', {
         templateUrl: 'app/charts/charts.html',
-        controller: 'ChartsCtrl'
+        controller: 'ChartsCtrl as chartCtrl'
       });
   });

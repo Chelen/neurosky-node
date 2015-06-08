@@ -23,3 +23,18 @@ This is the wizard view.
     </div>
   </div>
 </div>
+
+
+
+<button class="btn btn-primary" ng-click="wizardCtrl.startListening()"> Start !</button>
+<button class="btn btn-danger" ng-click="wizardCtrl.stopListening()"> Stop !</button>
+
+<div class="progress">
+  <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: {{wizardCtrl.status}}%">
+  </div>
+</div>
+
+
+
+
+

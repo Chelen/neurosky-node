@@ -1,3 +1,60 @@
-<div class="col-md-12">
-This is the charts view.
+<h3><i class="fa fa-angle-right"></i> Chartjs Charts</h3>
+<!-- page start-->
+<div class="tab-pane" id="chartjs">
+  <div class="row mt">
+    <div class="col-lg-6">
+      <div class="content-panel">
+        <h4><i class="fa fa-angle-right"></i> EEG Data</h4>
+        <div class="panel-body text-center">
+          <canvas id="radar" class="chart chart-radar" data="chartCtrl.eegValues" labels="chartCtrl.eegLabels"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="content-panel">
+        <h4><i class="fa fa-angle-right"></i> Line</h4>
+        <div class="panel-body text-center">
+            <i class="fa big-icon" ng-class="chartCtrl.blink ? 'fa-eye-slash' : 'fa-eye'"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row mt">
+    <div class="col-lg-6">
+      <div class="content-panel">
+        <h4><i class="fa fa-angle-right"></i> Radar</h4>
+        <div class="panel-body text-center">
+          <canvas id="line" class="chart chart-line" data="chartCtrl.attention" labels="chartCtrl.lineChartLabels"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="content-panel">
+        <h4><i class="fa fa-angle-right"></i> Polar Area</h4>
+        <div class="panel-body text-center">
+          <canvas id="line2" class="chart chart-line" data="chartCtrl.meditation" labels="chartCtrl.lineChartLabels"></canvas>
+        </div>
+      </div>
+     </div>
+  </div>
+  <div class="row mt">
+    <div class="col-lg-6">
+      <div class="content-panel">
+        <h4><i class="fa fa-angle-right"></i> Bar</h4>
+        <div class="panel-body text-center">
+          <canvas id="bar" height="300" width="400"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="content-panel">
+        <h4><i class="fa fa-angle-right"></i> Pie</h4>
+        <div class="panel-body text-center">
+          <canvas id="pie" height="300" width="400"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+

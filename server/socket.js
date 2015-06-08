@@ -9,7 +9,8 @@ var neurosky = require('node-neurosky');
 module.exports = function(app) {
 
     var io = require('socket.io')(app);
-
+    var connected = false;
+    var started = false;
 
     var client = neurosky.createClient({
         appName:'NodeNeuroSky',
@@ -18,18 +19,23 @@ module.exports = function(app) {
 
     client.on('data',function(data){
         console.log(data);
-        io.emit('data', data);
+        if (connected) io.emit('data', data);
     });
 
 
     io.on('connection', function(socket){
         console.log('a user connected');
         socket.on('startMindwave', function(msg){
-            client.connect();
+          if (!started) client.connect();
+          connected = true;
+          started = true;
         });
 
         socket.on('stopMindwave', function(msg){
-          client.disconnect();
+          //client.close();
+          //client.disconnect();
+          // TODO : FIND A WAY TO REALLY DISCONNECT
+          connected = false;
         });
     });
 

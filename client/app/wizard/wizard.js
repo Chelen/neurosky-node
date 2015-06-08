@@ -5,6 +5,6 @@ angular.module('mindwaveApp')
     $routeProvider
       .when('/wizard', {
         templateUrl: 'app/wizard/wizard.html',
-        controller: 'WizardCtrl'
+        controller: 'WizardCtrl as wizardCtrl'
       });
   });
