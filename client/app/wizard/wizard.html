@@ -1,38 +1,58 @@
-<div class="col-md-12">
-This is the wizard view.
-</div>
-
+<h3><i class="fa fa-angle-right"></i> Setup Wizard</h3>
 
 <div class="process">
   <div class="process-row">
     <div class="process-step">
-      <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-power-off fa-3x"></i></button>
+      <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': wizardCtrl.step == 0}" disabled="disabled" ng-class=""><i class="fa fa-power-off fa-3x"></i></button>
       <p>Power</p>
     </div>
     <div class="process-step">
-      <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fi-bluetooth fa-3x"></i></button>
+      <button type="button" class="btn btn-default btn-circle" disabled="disabled" ng-class="{'btn-success': wizardCtrl.step == 1}"><i class="fi-bluetooth fa-3x"></i></button>
       <p>Pair</p>
     </div>
     <div class="process-step">
-      <button type="button" class="btn btn-default btn-circle" disabled="disabled"><i class="fa fa-cog fa-3x"></i></button>
+      <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': wizardCtrl.step == 2}" disabled="disabled"><i class="fa fa-cog fa-3x"></i></button>
       <p>Adjust</p>
     </div>
     <div class="process-step">
-      <button type="button" class="btn btn-success btn-circle" disabled="disabled"><i class="fa fa-thumbs-up fa-3x"></i></button>
+      <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': wizardCtrl.step == 3}" disabled="disabled"><i class="fa fa-thumbs-up fa-3x"></i></button>
       <p>Done</p>
     </div>
   </div>
 </div>
 
 
+<section>
 
-<button class="btn btn-primary" ng-click="wizardCtrl.startListening()"> Start !</button>
-<button class="btn btn-danger" ng-click="wizardCtrl.stopListening()"> Stop !</button>
+  <section id="step0" ng-show="wizardCtrl.step == 0">
 
-<div class="progress">
-  <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: {{wizardCtrl.status}}%">
-  </div>
-</div>
+    <h3><i class="fa fa-angle-right"></i> Step 0</h3>
+
+
+    <button class="btn btn-primary" ng-click="wizardCtrl.startListening()"> Start !</button>
+    <button class="btn btn-danger" ng-click="wizardCtrl.stopListening()"> Stop !</button>
+
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: {{wizardCtrl.status}}%">
+      </div>
+    </div>
+
+  </section>
+
+
+  <section id="step1" ng-show="wizardCtrl.step == 1">
+    <h3><i class="fa fa-angle-right"></i> Step 1</h3>
+  </section>
+  <section id="step2" ng-show="wizardCtrl.step == 2">
+    <h3><i class="fa fa-angle-right"></i> Step 2</h3>
+  </section>
+  <section id="step3" ng-show="wizardCtrl.step == 3">
+    <h3><i class="fa fa-angle-right"></i> Step 3</h3>
+  </section>
+
+</section>
+
+<button ng-click="wizardCtrl.next()" class="btn btn-info">Next Step</button>
 
 
 

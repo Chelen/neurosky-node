@@ -5,8 +5,14 @@ angular.module('mindwaveApp')
     var self = this;
 
     self.message = 'Hello';
+    self.step = 0;
 
     self.status = 0;
+
+    self.next = function(){
+      if (self.step == 3) self.step = 0;
+      else self.step++;
+    };
 
 
     self.startListening = function(){
