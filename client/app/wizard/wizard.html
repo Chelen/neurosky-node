@@ -3,8 +3,8 @@
 <div class="process">
   <div class="process-row">
     <div class="process-step">
-      <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': wizardCtrl.step == 0}" disabled="disabled" ng-class=""><i class="fa fa-power-off fa-3x"></i></button>
-      <p>Power</p>
+      <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': wizardCtrl.step == 0}" disabled="disabled" ng-class=""><i class="fa fi-bluetooth fa-3x"></i></button>
+      <p>Pair</p>
     </div>
     <div class="process-step">
       <button type="button" class="btn btn-default btn-circle" disabled="disabled" ng-class="{'btn-success': wizardCtrl.step == 1}"><i class="fi-bluetooth fa-3x"></i></button>
@@ -29,19 +29,28 @@
     <h3><i class="fa fa-angle-right"></i> Step 0</h3>
 
 
-    <button class="btn btn-primary" ng-click="wizardCtrl.startListening()"> Start !</button>
-    <button class="btn btn-danger" ng-click="wizardCtrl.stopListening()"> Stop !</button>
+    <!--<button class="btn btn-primary" ng-click="wizardCtrl.startListening()"> Start !</button>-->
+    <!--<button class="btn btn-danger" ng-click="wizardCtrl.stopListening()"> Stop !</button>-->
 
-    <div class="progress">
-      <div class="progress-bar progress-bar-striped active" role="progressbar" style="width: {{wizardCtrl.status}}%">
-      </div>
-    </div>
+    <toggle-switch ng-model="wizardCtrl.connectStatus" ng-change="wizardCtrl.toggleConnection()"><toggle-switch>
+
+
 
   </section>
 
 
   <section id="step1" ng-show="wizardCtrl.step == 1">
     <h3><i class="fa fa-angle-right"></i> Step 1</h3>
+    <!--<div class="progress">-->
+      <!--<div class="progress-bar progress-bar-striped active" role="progressbar" style="width: {{wizardCtrl.status}}%">-->
+      <!--</div>-->
+    <!--</div>-->
+
+    <div round-progress max="100" current="wizardCtrl.status" color="#45ccce" bgcolor="#eaeaea" radius="100" animation="easeInOutQuart"></div>
+
+
+    <input type="number" ng-model="wizardCtrl.status" />
+
   </section>
   <section id="step2" ng-show="wizardCtrl.step == 2">
     <h3><i class="fa fa-angle-right"></i> Step 2</h3>

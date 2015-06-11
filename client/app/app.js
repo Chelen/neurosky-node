@@ -6,7 +6,9 @@ angular.module('mindwaveApp', [
   'ngSanitize',
   'btford.socket-io',
   'chart.js',
-  'ngRoute'
+  'ngRoute',
+  'toggle-switch',
+  'angular-svg-round-progress'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
