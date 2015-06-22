@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3 mb">
+    <div class="pn" id="game-pn">
+      <div id="barrel-container"></div>
+      <canvas id="game"></canvas>
+
+    </div>
+  </div>
+
+</div>
+
+<timer autostart="false" interval="1000">{{seconds}}</timer>
+
+<input type="number" ng-model="barrelCtrl.intensity" />
+<button ng-click="barrelCtrl.explode()">Explode!</button>
+<button ng-click="barrelCtrl.createCanvas()">Start!</button>

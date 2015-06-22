@@ -1,66 +1,216 @@
-<h3><i class="fa fa-angle-right"></i> Setup Wizard</h3>
 
-<div class="process">
-  <div class="process-row">
-    <div class="process-step">
-      <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': wizardCtrl.step == 0}" disabled="disabled" ng-class=""><i class="fa fi-bluetooth fa-3x"></i></button>
-      <p>Pair</p>
+<div class="row">
+
+  <!--<div class="col-sm-9">-->
+
+
+    <h3><i class="fa fa-angle-right"></i> Setup Wizard</h3>
+
+    <div class="process">
+      <div class="process-row">
+        <div class="process-step">
+          <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': wizardCtrl.step == 0}" disabled="disabled" ng-class=""><i class="fa fi-bluetooth fa-3x"></i></button>
+          <p>Pair</p>
+        </div>
+        <div class="process-step">
+          <button type="button" class="btn btn-default btn-circle" disabled="disabled" ng-class="{'btn-success': wizardCtrl.step == 1}"><i class="fa fa-user fa-3x"></i></button>
+          <p>Fit</p>
+        </div>
+        <div class="process-step">
+          <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': wizardCtrl.step == 2}" disabled="disabled"><i class="fa fa-cog fa-3x"></i></button>
+          <p>Adjust</p>
+        </div>
+        <div class="process-step">
+          <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': wizardCtrl.step == 3}" disabled="disabled"><i class="fa fa-thumbs-up fa-3x"></i></button>
+          <p>Done</p>
+        </div>
+      </div>
     </div>
-    <div class="process-step">
-      <button type="button" class="btn btn-default btn-circle" disabled="disabled" ng-class="{'btn-success': wizardCtrl.step == 1}"><i class="fi-bluetooth fa-3x"></i></button>
-      <p>Pair</p>
-    </div>
-    <div class="process-step">
-      <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': wizardCtrl.step == 2}" disabled="disabled"><i class="fa fa-cog fa-3x"></i></button>
-      <p>Adjust</p>
-    </div>
-    <div class="process-step">
-      <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': wizardCtrl.step == 3}" disabled="disabled"><i class="fa fa-thumbs-up fa-3x"></i></button>
-      <p>Done</p>
-    </div>
+
+
+    <section>
+
+      <section id="step0" ng-show="wizardCtrl.step == 0">
+
+        <h3><i class="fa fa-angle-right"></i> Step 0</h3>
+
+
+        <!--<button class="btn btn-primary" ng-click="wizardCtrl.startListening()"> Start !</button>-->
+        <!--<button class="btn btn-danger" ng-click="wizardCtrl.stopListening()"> Stop !</button>-->
+
+      <div class="row">
+        <div class="col-sm-6 col-sm-offset-3 mb">
+          <div class="twitter-panel pn">
+            <i class="fa fa-power-off fa-4x"></i>
+            <p>Start Pairing !</p>
+            <toggle-switch ng-model="wizardCtrl.connectStatus" ng-change="wizardCtrl.toggleConnection()"><toggle-switch>
+          </div>
+        </div>
+      </div>
+
+        <div class="row">
+          <div class="col-md-4 mb">
+          <!-- WHITE PANEL - TOP USER -->
+          <div class="white-panel pn">
+            <div class="white-header">
+              <h5>TOP USER</h5>
+            </div>
+            <p><img src="assets/img/ui-zac.jpg" class="img-circle" width="80"></p>
+            <p><b>Zac Snider</b></p>
+            <div class="row">
+              <div class="col-md-6">
+                <p class="small mt">MEMBER SINCE</p>
+                <p>2012</p>
+              </div>
+              <div class="col-md-6">
+                <p class="small mt">TOTAL SPEND</p>
+                <p>$ 47,60</p>
+              </div>
+            </div>
+          </div>
+        </div>
+          <div class="col-md-4 mb">
+            <!-- WHITE PANEL - TOP USER -->
+            <div class="white-panel pn">
+              <div class="white-header">
+                <h5>TOP USER</h5>
+              </div>
+              <p><img src="assets/img/ui-zac.jpg" class="img-circle" width="80"></p>
+              <p><b>Zac Snider</b></p>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="small mt">MEMBER SINCE</p>
+                  <p>2012</p>
+                </div>
+                <div class="col-md-6">
+                  <p class="small mt">TOTAL SPEND</p>
+                  <p>$ 47,60</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb">
+            <!-- WHITE PANEL - TOP USER -->
+            <div class="white-panel pn">
+              <div class="white-header">
+                <h5>TOP USER</h5>
+              </div>
+              <p><img src="assets/img/ui-zac.jpg" class="img-circle" width="80"></p>
+              <p><b>Zac Snider</b></p>
+              <div class="row">
+                <div class="col-md-6">
+                  <p class="small mt">MEMBER SINCE</p>
+                  <p>2012</p>
+                </div>
+                <div class="col-md-6">
+                  <p class="small mt">TOTAL SPEND</p>
+                  <p>$ 47,60</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+
+      </section>
+
+      <section id="step1" ng-show="wizardCtrl.step == 1 || wizardCtrl.step == 2">
+        <h3><i class="fa fa-angle-right"></i> Step {{wizardCtrl.step}}</h3>
+
+
+        <div class="col-sm-6 col-sm-offset-3 mb">
+          <div class="white-panel status-pn">
+            <div class="white-header">
+              <h5>FIT STATUS</h5>
+            </div>
+            <div class="row">
+              <div class="col-sm-6 col-xs-6 goleft">
+                <p><i class="fa fa-heart"></i> 122</p>
+              </div>
+              <div class="col-sm-6 col-xs-6"></div>
+            </div>
+            <div class="centered status-wrapper">
+              <div class="status-progress ng-binding">{{wizardCtrl.status}}/100</div>
+              <div round-progress max="100" current="wizardCtrl.status" color="#45ccce" bgcolor="#eaeaea" radius="100" animation="easeInOutQuart"></div>
+
+
+            </div>
+          </div>
+        </div>
+
+        <!--<input type="number" ng-model="wizardCtrl.status" />-->
+
+      </section>
+      <!--<section id="step2" ng-show="wizardCtrl.step == 2">-->
+        <!--<h3><i class="fa fa-angle-right"></i> Step 2</h3>-->
+      <!--</section>-->
+      <!--<section id="step3" ng-show="wizardCtrl.step == 3">-->
+        <!--<h3><i class="fa fa-angle-right"></i> Step 3</h3>-->
+      <!--</section>-->
+
+    </section>
+
+
   </div>
-</div>
 
+  <!--<div class="col-md-3 ds">-->
+    <!--<h3>HELP</h3>-->
 
-<section>
-
-  <section id="step0" ng-show="wizardCtrl.step == 0">
-
-    <h3><i class="fa fa-angle-right"></i> Step 0</h3>
-
-
-    <!--<button class="btn btn-primary" ng-click="wizardCtrl.startListening()"> Start !</button>-->
-    <!--<button class="btn btn-danger" ng-click="wizardCtrl.stopListening()"> Stop !</button>-->
-
-    <toggle-switch ng-model="wizardCtrl.connectStatus" ng-change="wizardCtrl.toggleConnection()"><toggle-switch>
-
-
-
-  </section>
-
-
-  <section id="step1" ng-show="wizardCtrl.step == 1">
-    <h3><i class="fa fa-angle-right"></i> Step 1</h3>
-    <!--<div class="progress">-->
-      <!--<div class="progress-bar progress-bar-striped active" role="progressbar" style="width: {{wizardCtrl.status}}%">-->
+    <!--&lt;!&ndash; First Action &ndash;&gt;-->
+    <!--<div class="desc">-->
+      <!--<div class="thumb">-->
+        <!--<span class="badge bg-theme"><i class="fa fa-check"></i></span>-->
+      <!--</div>-->
+      <!--<div class="details">-->
+        <!--<p><a href="#">Turn On</a> ThinkGear Connector.</p>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; Second Action &ndash;&gt;-->
+    <!--<div class="desc">-->
+      <!--<div class="thumb">-->
+        <!--<span class="badge bg-theme"><i class="fa fa-check"></i></span>-->
+      <!--</div>-->
+      <!--<div class="details">-->
+        <!--<p><a href="#">Turn On</a> Neurosky Mindwave.<br>-->
+        <!--</p>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; Third Action &ndash;&gt;-->
+    <!--<div class="desc">-->
+      <!--<div class="thumb">-->
+        <!--<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>-->
+      <!--</div>-->
+      <!--<div class="details">-->
+        <!--<p><a href="#"> Pair</a> Devices.<br>-->
+        <!--</p>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; Fourth Action &ndash;&gt;-->
+    <!--<div class="desc">-->
+      <!--<div class="thumb">-->
+        <!--<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>-->
+      <!--</div>-->
+      <!--<div class="details">-->
+        <!--<p><a href="#">Turn On</a> Nuerosky Node Application !. </p>-->
+      <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; Fifth Action &ndash;&gt;-->
+    <!--<div class="desc">-->
+      <!--<div class="thumb">-->
+        <!--<span class="badge bg-theme"><i class="fa fa-clock-o"></i></span>-->
+      <!--</div>-->
+      <!--<div class="details">-->
+        <!--<p><muted>18 Hours Ago</muted><br>-->
+          <!--<a href="#">Daniel Pratt</a> purchased a wallet in your store.<br>-->
+        <!--</p>-->
       <!--</div>-->
     <!--</div>-->
 
-    <div round-progress max="100" current="wizardCtrl.status" color="#45ccce" bgcolor="#eaeaea" radius="100" animation="easeInOutQuart"></div>
+  <!--</div>-->
 
-
-    <input type="number" ng-model="wizardCtrl.status" />
-
-  </section>
-  <section id="step2" ng-show="wizardCtrl.step == 2">
-    <h3><i class="fa fa-angle-right"></i> Step 2</h3>
-  </section>
-  <section id="step3" ng-show="wizardCtrl.step == 3">
-    <h3><i class="fa fa-angle-right"></i> Step 3</h3>
-  </section>
-
-</section>
-
+<!--</div>-->
 <button ng-click="wizardCtrl.next()" class="btn btn-info">Next Step</button>
 
 

@@ -6,6 +6,7 @@ angular.module('mindwaveApp')
 
     self.message = 'Hello';
     self.step = 0;
+    self.fitCount = 0;
 
     self.color = "#45ccce";
     self.blink = false;
@@ -32,18 +33,13 @@ angular.module('mindwaveApp')
 
 
 
-    self.startListening = function(){
-      //socket.emit('startMindwave', "startinnnng!");
-      console.log("Im on !");
-    };
-
-    self.stopListening = function(){
-      //socket.emit('stopMindwave', "stopiiing!");
-      console.log("Im off !");
-    };
-
     socket.on('data', function(data){
       if (data.poorSignalLevel || data.poorSignalLevel === 0) self.status = (200 - data.poorSignalLevel)/2;
+      if (self.step === 0 && data.eegPower) self.step++;
+      if (self.step === 1 && data.poorSignalLevel === 0) {
+        if (self.fitCount === 5) self.step++;
+        else self.fitCount++;
+      }
     });
 
   });

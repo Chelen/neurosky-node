@@ -8,7 +8,8 @@ angular.module('mindwaveApp', [
   'chart.js',
   'ngRoute',
   'toggle-switch',
-  'angular-svg-round-progress'
+  'angular-svg-round-progress',
+  'timer'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider
