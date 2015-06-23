@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('mindwaveApp')
-  .controller('BarrelCtrl', function () {
+  .controller('BarrelCtrl', function ($scope) {
 
     var self = this;
 
@@ -21,6 +21,8 @@ angular.module('mindwaveApp')
       };
 
       self.init();
+
+      self.startTimer();
 
     };
 
@@ -103,15 +105,28 @@ angular.module('mindwaveApp')
 
       }
 
+      self.intensity = 0;
+      self.stopTimer();
+
+
     };
 
     function getRandom(max, min){
       return Math.floor(Math.random() * (1 + max - min) + min);
     }
 
+    $scope.$on('$routeChangeStart', function(route) {
+      //TODO clear interval on navidation
+      console.log('navigation changed !');
+      clearInterval(self.timerID);
+    });
+
 
 
     self.reset = function(){
+
+
+
 
       self.obj.empty().remove();
       var parent = document.getElementById('barrel-container');
@@ -189,7 +204,7 @@ angular.module('mindwaveApp')
         });
 
         //Update the particles every frame
-        var timer=setInterval(update,40);
+        self.timerID=setInterval(update,40);
 
       } else {
         alert("Canvas not supported.");
@@ -197,12 +212,12 @@ angular.module('mindwaveApp')
     };
 
     self.startTimer = function (){
-      self.$broadcast('timer-start');
+      $scope.$broadcast('timer-start');
       //$scope.timerRunning = true;
     };
 
-    $scope.stopTimer = function (){
-      $broadcast('timer-stop');
+    self.stopTimer = function (){
+      $scope.$broadcast('timer-stop');
       //$scope.timerRunning = false;
     };
 

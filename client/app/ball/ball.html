@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3 mb ">
+    <div class="pn ball" id="game-pn">
+      <canvas id="bg"></canvas>
+      <canvas id="particles"></canvas>
+      <canvas id="game" class="ball"></canvas>
+    </div>
+  </div>
+
+</div>
+
+<timer autostart="false" interval="1000">{{seconds}}</timer>
+
+<input type="number" ng-model="ballCtrl.intensity" />
+<input type="number" ng-model="ballCtrl.posY" />
+<!--<button ng-click="ballCtrl.explode()">Explode!</button>-->
+<button ng-click="ballCtrl.createCanvas()">Start!</button>
