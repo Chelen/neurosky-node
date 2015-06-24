@@ -1,0 +1,137 @@
+<div class="col-md-12">
+This is the train view.
+</div>
+
+<div class="process">
+  <div class="process-row">
+    <div class="process-step">
+      <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': trainCtrl.step == 0}" ng-click="trainCtrl.setStep(0)"><i class="fa fa-pencil fa-3x"></i></button>
+      <p>Profile</p>
+    </div>
+    <div class="process-step">
+      <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': trainCtrl.step == 1}" ng-click="trainCtrl.setStep(1)"><i class="fa fa-meh-o fa-3x"></i></button>
+      <p>Neutral</p>
+    </div>
+    <div class="process-step">
+      <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': trainCtrl.step == 2}" ng-click="trainCtrl.setStep(2)"><i class="fa fa-exclamation fa-3x"></i></button>
+      <p>Attention</p>
+    </div>
+    <div class="process-step">
+      <button type="button" class="btn btn-default btn-circle" ng-class="{'btn-success': trainCtrl.step == 3}" ng-click="trainCtrl.setStep(3)"><i class="fa fa-cog fa-3x"></i></button>
+      <p>Preview</p>
+    </div>
+  </div>
+</div>
+
+<section id="step0" ng-show="trainCtrl.step == 0">
+
+  <!--<h3><i class="fa fa-angle-right"></i> Neutral State </h3>-->
+
+  <div class="col-sm-6 col-sm-offset-3 mb">
+    <div class="white-panel status-pn">
+      <div class="white-header">
+        <h5>Profile</h5>
+      </div>
+      <br/>
+      <div class="form-group">
+        <label for="profileName">Name</label>
+        <input type="text" class="form-control" id="profileName" placeholder="Profile Name"
+          ng-model="trainCtrl.profile.name">
+      </div>
+      <button ng-click="trainCtrl.setStep(1)" class="btn btn-primary">Start!</button>
+    </div>
+  </div>
+
+
+</section>
+
+<section id="step1" ng-show="trainCtrl.step == 1 || trainCtrl.step == 2">
+
+  <!--<h3><i class="fa fa-angle-right"></i> Neutral State </h3>-->
+
+  <div class="col-sm-6 col-sm-offset-3 mb">
+    <div class="white-panel status-pn">
+      <div class="white-header">
+        <h5>{{trainCtrl.step == 1 ? 'Neutral State' : 'Attention State'}}</h5>
+      </div>
+      <br/>
+      <div class="centered status-wrapper">
+        <div round-progress max="15" current="trainCtrl.recordingCount" color="#45ccce" bgcolor="#eaeaea" radius="100" animation="easeInOutQuart"></div>
+      </div>
+      <button ng-click="trainCtrl.start()">Start Recording</button>
+    </div>
+  </div>
+
+
+</section>
+
+<section id="step3" ng-show="trainCtrl.step == 3">
+
+  <!--<h3><i class="fa fa-angle-right"></i> Neutral State </h3>-->
+  <div class="row">
+
+    <div class="col-sm-4 mb">
+      <div class="white-panel status-pn">
+        <div class="white-header">
+          <h5>Settings</h5>
+        </div>
+        <br/>
+        <div class="btn-group">
+          <button type="button" class="btn btn-default">Default R</button>
+          <button type="button" class="btn btn-default">Custom R</button>
+        </div>
+        <p>Uses beta to alpha ratio</p>
+      </div>
+    </div>
+    <div class="col-sm-4 mb">
+      <div class="white-panel status-pn">
+        <div class="white-header">
+          <input type="checkbox" ng-model="showDefault" class="right-check"/>
+          <h5>Preview</h5>
+
+        </div>
+
+        <div class="row" ng-show="showDefault">
+          <h3 class="col-sm-6">{{trainCtrl.profile.name}}</h3>
+          <h3 class="col-sm-6" >Default</h3>
+        </div>
+        <div class="progress vertical">
+          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
+        </div>
+        <div class="left-status"> 20% </div>
+        <div class="progress vertical right" ng-show="showDefault">
+          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
+        </div>
+        <div ng-show="showDefault" class="right-status"> 20% </div>
+      </div>
+    </div>
+    <div class="col-sm-4 mb">
+      <div class="white-panel status-pn">
+        <div class="white-header">
+          <h5>Data</h5>
+        </div>
+        <br/>
+        <pre>{{trainCtrl.profile | json}}</pre>
+        <button ng-click="trainCtrl.saveProfile()" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+
+  </div>
+
+
+</section>
+
+
+
+
+
+
+<!--<button ng-click="trainCtrl.normalize()">Normalize Data</button>-->
+
+
+<!--<select ng-model="trainCtrl.session" class="form-control">-->
+  <!--<option value="neutral">Neutral</option>-->
+  <!--<option value="attention">Attentive</option>-->
+<!--</select>-->
+
+
