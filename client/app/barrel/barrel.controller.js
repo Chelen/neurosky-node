@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('mindwaveApp')
-  .controller('BarrelCtrl', function ($scope) {
+  .controller('BarrelCtrl', function ($scope, $timeout, socket) {
 
     var self = this;
-
     self.intensity = 0;
+    self.attention = 0;
+    self.fisrt = true;
+    self.playing = false;
 
 
     self.createCanvas = function(){
@@ -23,8 +25,33 @@ angular.module('mindwaveApp')
       self.init();
 
       self.startTimer();
+      self.first = false;
+      self.playing = true;
 
     };
+
+
+    socket.on('data', function(data){
+      if (self.playing){
+        if (data.eSense){
+           if (data.eSense.customAttention) self.attention = data.eSense.customAttention;
+           else self.attention = data.eSense.attention;
+        }
+
+        if (self.attention > 70) {
+          self.intensity+=((0.5*(self.attention - 70)));
+        } else if (self.attention < 40){
+          if (self.intensity > 10) self.intensity-= 5;
+        }
+
+        self.blinkReady = self.intensity > 110;
+
+        if (self.blinkReady && data.blinkStrength && data.blinkStrength > 45){
+          self.explode();
+        }
+      }
+
+    });
 
 
     function createParticles(imgObj,left,top){
@@ -108,8 +135,13 @@ angular.module('mindwaveApp')
       self.intensity = 0;
       self.stopTimer();
 
+      $timeout(function(){
+        self.playing = false;
+        self.intensity = 0;
+      }, 2000);
 
     };
+
 
     function getRandom(max, min){
       return Math.floor(Math.random() * (1 + max - min) + min);

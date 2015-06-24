@@ -5,9 +5,34 @@ angular.module('mindwaveApp')
 
     var self = this;
 
-    self.profile = {};
+    self.profiles = {
+      //Neurosky : { name:'Neurosky'},
+      //Chelen : {
+      //  name : 'Chelen',
+      //  defaultR: true,
+      //  pond : 50
+      //}
+    };
+
+    self.profile = {
+      defaultR: true,
+      pond : 0
+    };
     self.session = 'neutral';
+    self.newP = true;
     self.step = 0;
+
+    self.setNew = function(n){
+      self.newP = n;
+      console.log(n);
+      if (!n) {
+        socket.emit('getProfiles', '');
+      }
+    };
+
+    socket.on('profiles', function(prof){
+      self.profiles = prof;
+    });
 
 
     self.clear = function(){
@@ -119,5 +144,8 @@ angular.module('mindwaveApp')
     };
 
     self.clear();
+
+
+
 
   });

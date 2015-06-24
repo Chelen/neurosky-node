@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-6 col-sm-offset-3 mb ">
+  <div class="col-sm-6 col-sm-offset-1 mb ">
     <div class="pn ball" id="game-pn">
       <canvas id="bg"></canvas>
       <canvas id="particles"></canvas>
@@ -7,11 +7,29 @@
     </div>
   </div>
 
+  <div class="col-sm-4 mb">
+
+    <div class="darkblue-panel pn game-like-pn">
+      <div class="darkblue-header">
+        <h5>SHROOM GAME</h5>
+      </div>
+
+      <canvas id="doughnut" class="chart chart-doughnut" data="[barrelCtrl.attention, 100-barrelCtrl.attention]"
+              labels="['', '']"></canvas>
+      <i class="fa big-icon fa-eye blink_me " ng-show="barrelCtrl.blinkReady"> </i>
+      <h2 class="time-counter"><i class="fa fa-flag"></i></h2>
+      <p class="big-timer">{{ballCtrl.realDistance}}</p>
+
+    </div>
+    <!--<div class="pn">-->
+
+    <!--</div>-->
+  </div>
+
 </div>
 
-<timer autostart="false" interval="1000">{{seconds}}</timer>
 
+<input type="number" ng-model="ballCtrl.nSpeed" />
 <input type="number" ng-model="ballCtrl.intensity" />
-<input type="number" ng-model="ballCtrl.posY" />
 <!--<button ng-click="ballCtrl.explode()">Explode!</button>-->
 <button ng-click="ballCtrl.createCanvas()">Start!</button>

@@ -9,4 +9,85 @@
 #game-pn {
   height: 520px;
   position: relative;
+
+  .btn-clear-g {
+    position: absolute;
+    top: 35%;
+    left: 50%;
+    margin-left: -53px;
+  }
 }
+.pn.game-like-pn {
+  height: 520px;
+}
+
+.big-timer {
+  font-size: 10em;
+  color: #FF6B6B;
+  font-weight: 700;
+  position: absolute;
+  width: 180px !important;
+  left: 50%;
+  margin-left: -90px;
+  bottom: 0;
+}
+
+.btn-clear-g i {
+  padding-right: 15px;
+}
+
+.time-counter{
+  position: absolute;
+  bottom: 110px;
+  left: 50%;
+  margin-left: -3em;
+}
+
+.fa-eye.blink_me{
+    position: absolute;
+    top: 23%;
+    left: 50%;
+    margin-left: -65px;
+    color: #FF6B6B;
+}
+
+.blink_me {
+  -webkit-animation-name: blinker;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+
+  -moz-animation-name: blinker;
+  -moz-animation-duration: 1s;
+  -moz-animation-timing-function: linear;
+  -moz-animation-iteration-count: infinite;
+
+  animation-name: blinker;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blinker {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@-webkit-keyframes blinker {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+@keyframes blinker {
+  0% { opacity: 1.0; }
+  50% { opacity: 0.0; }
+  100% { opacity: 1.0; }
+}
+
+.large-mb{
+  margin-bottom: 50px;
+}
+
+

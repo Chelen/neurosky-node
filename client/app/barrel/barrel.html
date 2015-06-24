@@ -1,16 +1,39 @@
+<h3 class="large-mb"><i class="fa fa-angle-right"></i> Exploding Barrel</h3>
+<!--<input type="number" ng-model="barrelCtrl.intensity" />-->
+<!--<button ng-click="barrelCtrl.explode()">Explode!</button>-->
+
+
+
 <div class="row">
-  <div class="col-sm-6 col-sm-offset-3 mb">
+  <div class="col-sm-6 col-sm-offset-1 mb">
     <div class="pn" id="game-pn">
       <div id="barrel-container"></div>
       <canvas id="game"></canvas>
+      <button ng-show="!barrelCtrl.playing" ng-click="barrelCtrl.createCanvas()"
+              class="btn btn-lg btn-clear-g"><i class="fa "
+              ng-class="{'fa-repeat': !barrelCtrl.first, 'fa-play' : barrelCtrl.first }"></i>Start!</button>
 
     </div>
   </div>
 
+  <div class="col-sm-4 mb">
+
+    <div class="darkblue-panel pn game-like-pn">
+      <div class="darkblue-header">
+        <h5>BARREL GAME</h5>
+      </div>
+
+      <canvas id="doughnut" class="chart chart-doughnut" data="[barrelCtrl.attention, 100-barrelCtrl.attention]"
+              labels="['', '']"></canvas>
+      <i class="fa big-icon fa-eye blink_me " ng-show="barrelCtrl.blinkReady"> </i>
+      <h2 class="time-counter"><i class="fa fa-clock-o"></i></h2>
+      <timer autostart="false" interval="1000" class="big-timer">{{seconds}}</timer>
+
+    </div>
+    <!--<div class="pn">-->
+
+    <!--</div>-->
+  </div>
+
 </div>
 
-<timer autostart="false" interval="1000">{{seconds}}</timer>
-
-<input type="number" ng-model="barrelCtrl.intensity" />
-<button ng-click="barrelCtrl.explode()">Explode!</button>
-<button ng-click="barrelCtrl.createCanvas()">Start!</button>

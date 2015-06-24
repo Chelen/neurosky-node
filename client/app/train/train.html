@@ -32,15 +32,36 @@ This is the train view.
       <div class="white-header">
         <h5>Profile</h5>
       </div>
-      <br/>
-      <div class="form-group">
-        <label for="profileName">Name</label>
-        <input type="text" class="form-control" id="profileName" placeholder="Profile Name"
-          ng-model="trainCtrl.profile.name">
+      <div class="btn-group btn-group-justified">
+        <div class="btn-group">
+          <button type="button" class="btn btn-theme" ng-class="{'active': trainCtrl.newP }" ng-click="trainCtrl.setNew(true)">New</button>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-theme" ng-class="{'active': !trainCtrl.newP }" ng-click="trainCtrl.setNew(false)">Edit</button>
+        </div>
       </div>
-      <button ng-click="trainCtrl.setStep(1)" class="btn btn-primary">Start!</button>
+      <br/>
+
+      <div ng-show="trainCtrl.newP">
+        <div class="form-group">
+          <label for="profileName">Name</label>
+          <input type="text" class="form-control" id="profileName" placeholder="Profile Name"
+            ng-model="trainCtrl.profile.name">
+        </div>
+        <button ng-click="trainCtrl.setStep(1)" class="btn btn-primary">Start!</button>
+      </div>
+      <div ng-show="!trainCtrl.newP">
+        <div class="form-group">
+          <label>Choose Profile</label>
+          <select ng-model="trainCtrl.profile" class="form-control" ng-options="p.name for p in trainCtrl.profiles"></select>
+        </div>
+        <button ng-click="trainCtrl.setStep(1)" class="btn btn-primary">Start!</button>
+      </div>
     </div>
+
+
   </div>
+
 
 
 </section>
@@ -77,12 +98,20 @@ This is the train view.
         </div>
         <br/>
         <div class="btn-group">
-          <button type="button" class="btn btn-default">Default R</button>
-          <button type="button" class="btn btn-default">Custom R</button>
+        <button type="button" class="btn btn-default" ng-class="{'active': trainCtrl.profile.defaultR }" ng-click="trainCtrl.profile.defaultR = true">Default R</button>
+        <button type="button" class="btn btn-default" ng-class="{'active': !trainCtrl.profile.defaultR }" ng-click="trainCtrl.profile.defaultR = false">Custom R</button>
+      </div>
+        <div class="help-text">
+          <p ng-if="trainCtrl.profile.defaultR">Uses beta to alpha waves ratio</p>
+          <p ng-if="!trainCtrl.profile.defaultR">Uses high beta to low alpha waves ratio</p>
         </div>
-        <p>Uses beta to alpha ratio</p>
-        <h4>Default attention %</h4>
-        <slider ng-model="trainCtrl.profile.pond" min="0" step="5" max="80"></slider>
+        <h4 class="sub-header">Default attention %</h4>
+        <div class="pond-container">
+          <slider ng-model="trainCtrl.profile.pond" min="0" step="5" max="80"></slider>
+        </div>
+        <div class="help-text">
+          <p>Neurosky attention algorithm influence</p>
+        </div>
       </div>
     </div>
     <div class="col-sm-4 mb">

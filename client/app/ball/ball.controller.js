@@ -1,13 +1,67 @@
 'use strict';
 
 angular.module('mindwaveApp')
-  .controller('BallCtrl', function () {
+  .controller('BallCtrl', function (socket) {
 
 
     var self = this;
 
     self.intensity = 0;
+    self.distance = 0;
+    self.realDistance = 0;
+    self.nSpeed = 0;
     var started = false;
+
+
+
+    //socket.on('data', function(data){
+    //  if (self.playing){
+    //    if (data.eSense){
+    //      if (data.eSense.customAttention) self.attention = data.eSense.customAttention;
+    //      else self.attention = data.eSense.attention;
+    //    }
+    //
+    //    if (self.attention > 70) {
+    //      self.intensity+=((0.5*(self.attention - 70)));
+    //    } else if (self.attention < 40){
+    //      if (self.intensity > 10) self.intensity-= 5;
+    //    }
+    //
+    //    self.blinkReady = self.intensity > 110;
+    //
+    //    if (self.blinkReady && data.blinkStrength && data.blinkStrength > 45){
+    //      self.explode();
+    //    }
+    //  }
+    //
+    //});
+
+
+    setInterval(
+      function () {
+        getGame();
+      }, 1000);
+
+
+    function getGame(){
+      if (started){
+        if (self.intensity > 80) {
+          if (self.nSpeed < 20) self.nSpeed+=1;
+        }
+        if (self.intensity < 40) {
+          if (self.nSpeed > 0) self.nSpeed-=1;
+        }
+
+
+        self.distance+=self.nSpeed;
+        updateRealDistance()
+      }
+    }
+
+    function updateRealDistance(){
+      self.realDistance = Math.floor(self.distance / 10);
+
+    }
 
 
 
@@ -99,7 +153,7 @@ angular.module('mindwaveApp')
       // Implement abstract function
       this.draw = function() {
         // Pan background
-        this.y += self.intensity;
+        this.y += self.nSpeed;
         if (this.drawGround) this.context.drawImage(imageRepository.ground_bg, this.x, this.y);
         else this.context.drawImage(imageRepository.sky_bg, this.x, this.y);
         // Draw another image at the top edge of the first image
@@ -422,7 +476,7 @@ angular.module('mindwaveApp')
 
         // Draw the particles
         for (var i = 0; i < 18; i++) {
-          if (Math.random() > 0.97) {
+          if (Math.random() > 0.97 && self.nSpeed > 15 &&  self.intensity>90) {
             // Introducing a random chance of creating a particle
             // corresponding to an chance of 1 per second,
             // per "density" value
