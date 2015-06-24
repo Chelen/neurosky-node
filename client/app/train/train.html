@@ -81,6 +81,8 @@ This is the train view.
           <button type="button" class="btn btn-default">Custom R</button>
         </div>
         <p>Uses beta to alpha ratio</p>
+        <h4>Default attention %</h4>
+        <slider ng-model="trainCtrl.profile.pond" min="0" step="5" max="80"></slider>
       </div>
     </div>
     <div class="col-sm-4 mb">
@@ -92,17 +94,17 @@ This is the train view.
         </div>
 
         <div class="row" ng-show="showDefault">
-          <h3 class="col-sm-6">{{trainCtrl.profile.name}}</h3>
-          <h3 class="col-sm-6" >Default</h3>
+          <h4 class="col-sm-6">{{trainCtrl.profile.name}}</h4>
+          <h4 class="col-sm-6" >Default</h4>
         </div>
         <div class="progress vertical">
-          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
+          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {{trainCtrl.customAtt}}%"></div>
         </div>
-        <div class="left-status"> 20% </div>
+        <div class="left-status"> {{trainCtrl.customAtt}}% </div>
         <div class="progress vertical right" ng-show="showDefault">
-          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%"></div>
+          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: {{trainCtrl.att}}%"></div>
         </div>
-        <div ng-show="showDefault" class="right-status"> 20% </div>
+        <div ng-show="showDefault" class="right-status"> {{trainCtrl.att}}% </div>
       </div>
     </div>
     <div class="col-sm-4 mb">

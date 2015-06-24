@@ -11,6 +11,7 @@ module.exports = function(app) {
     var io = require('socket.io')(app);
     var connected = false;
     var started = false;
+    var profile = {};
 
     var client = neurosky.createClient({
         appName:'NodeNeuroSky',
@@ -18,8 +19,15 @@ module.exports = function(app) {
     });
 
     client.on('data',function(data){
-        console.log(data);
-        if (connected) io.emit('data', data);
+        //console.log(data);
+        if (connected) {
+          if (profile.attention) {
+            var customR =  profile.attention.r;
+            console.log(customR);
+            data.eSense.customAttention = data.eSense.attention * customR;
+          }
+          io.emit('data', data);
+        }
     });
 
 
@@ -36,6 +44,11 @@ module.exports = function(app) {
           //client.disconnect();
           // TODO : FIND A WAY TO REALLY DISCONNECT
           connected = false;
+        });
+
+      socket.on('profile', function(msg){
+          console.log(msg);
+          profile = msg;
         });
     });
 

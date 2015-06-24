@@ -9,7 +9,8 @@ angular.module('mindwaveApp', [
   'ngRoute',
   'toggle-switch',
   'angular-svg-round-progress',
-  'timer'
+  'timer',
+  'ui.bootstrap-slider'
 ])
   .config(function ($routeProvider, $locationProvider) {
     $routeProvider

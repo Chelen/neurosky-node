@@ -28,6 +28,9 @@ angular.module('mindwaveApp')
       self.recordingCount = 0;
     };
 
+    self.att = 0;
+    self.customAtt = 0;
+
 
     socket.on('data', function(data) {
       if (self.recording && self.recordingCount < 15 && data.eegPower) {
@@ -46,6 +49,14 @@ angular.module('mindwaveApp')
           self.setStep(self.step+1);
         }
       }
+
+      if (self.step == 3 && data.eSense){
+        self.att = data.eSense.attention;
+        self.customAtt = data.eSense.customAttention;
+
+      }
+
+
     });
 
     self.setStep = function(s){
@@ -66,6 +77,10 @@ angular.module('mindwaveApp')
       };
 
     }
+
+    self.saveProfile = function(){
+      socket.emit('profile', self.profile);
+    };
 
 
     self.normalize = function(){
