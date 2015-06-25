@@ -5,67 +5,81 @@ angular.module('mindwaveApp')
 
 
     var self = this;
+    var canLoose = false;
 
-    self.intensity = 0;
-    self.distance = 0;
-    self.realDistance = 0;
-    self.nSpeed = 0;
-    var started = false;
+    function reset(){
 
-
-
-    //socket.on('data', function(data){
-    //  if (self.playing){
-    //    if (data.eSense){
-    //      if (data.eSense.customAttention) self.attention = data.eSense.customAttention;
-    //      else self.attention = data.eSense.attention;
-    //    }
-    //
-    //    if (self.attention > 70) {
-    //      self.intensity+=((0.5*(self.attention - 70)));
-    //    } else if (self.attention < 40){
-    //      if (self.intensity > 10) self.intensity-= 5;
-    //    }
-    //
-    //    self.blinkReady = self.intensity > 110;
-    //
-    //    if (self.blinkReady && data.blinkStrength && data.blinkStrength > 45){
-    //      self.explode();
-    //    }
-    //  }
-    //
-    //});
-
-
-    setInterval(
-      function () {
-        getGame();
-      }, 1000);
-
-
-    function getGame(){
-      if (started){
-        if (self.intensity > 80) {
-          if (self.nSpeed < 20) self.nSpeed+=1;
-        }
-        if (self.intensity < 40) {
-          if (self.nSpeed > 0) self.nSpeed-=1;
-        }
-
-
-        self.distance+=self.nSpeed;
-        updateRealDistance()
-      }
+      self.intensity = 0;
+      self.nDistance = 0;
+      self.realDistance = 0;
+      self.nSpeed = 0;
+      self.playing = false;
+      canLoose = false;
     }
 
-    function updateRealDistance(){
-      self.realDistance = Math.floor(self.distance / 10);
 
+    reset();
+
+
+
+    socket.on('data', function(data){
+
+      if (self.playing){
+        if (data.eSense){
+          self.intensity = data.eSense.meditation;
+          if (self.intensity > 80) {
+            if (self.nSpeed < 20) self.nSpeed+=1;
+          }
+          if (self.intensity < 40) {
+            if (self.nSpeed > 0 && canLoose) self.nSpeed-=1;
+            else if (self.nSpeed > 10) self.nSpeed-=3;
+          }
+
+
+          if (self.intensity > 80){
+            KEY_STATUS[KEY_CODES[1]] = true;
+            KEY_STATUS[KEY_CODES[0]] = false;
+          } else if (self.intensity < 30){
+            KEY_STATUS[KEY_CODES[0]] = true;
+            KEY_STATUS[KEY_CODES[1]] = false;
+          } else {
+            KEY_STATUS[KEY_CODES[0]] = false;
+            KEY_STATUS[KEY_CODES[1]] = false;
+          }
+
+        }
+
+
+        self.nDistance+=self.nSpeed;
+        updateRealDistance();
+
+        if (self.nSpeed == 0 && canLoose){
+          self.playing = false;
+        }
+
+        if (self.nDistance > 4){ canLoose = true; }
+
+      }
+
+
+    });
+
+
+
+
+
+
+
+    function updateRealDistance(){
+      self.realDistance = Math.floor(self.nDistance / 10);
     }
 
 
 
     self.createCanvas = function(){
+
+      reset();
+
 
       /**
        * Initialize the Game and starts it.
@@ -227,7 +241,7 @@ angular.module('mindwaveApp')
       this.start = function() {
         resizeCanvas();
         animate();
-        started = true;
+        self.playing = true;
 
       };
     }
@@ -276,8 +290,7 @@ angular.module('mindwaveApp')
 
       {
         // Determine if the action is move action
-        if (KEY_STATUS.left || KEY_STATUS.right ||
-          KEY_STATUS.down || KEY_STATUS.up) {
+        if (KEY_STATUS.down || KEY_STATUS.up) {
           // The ship moved, so erase it's current image so it can
           // be redrawn in it's new location
           this.context.clearRect(0, 0, self.bgCanvas.width, self.bgCanvas.height);
@@ -320,7 +333,7 @@ angular.module('mindwaveApp')
         self.particleCanvas.style.width = width + "px";
         self.particleCanvas.style.height = height + "px";
 
-        if(started) self.ship.x = self.shipCanvas.width/2 - imageRepository.spaceship.width/2;
+        if(self.playing) self.ship.x = self.shipCanvas.width/2 - imageRepository.spaceship.width/2;
         else self.bootstrap();
 
       }, 0);
@@ -353,8 +366,8 @@ angular.module('mindwaveApp')
     // The keycodes that will be mapped when a user presses a button.
 // Original code by Doug McInnes
     var KEY_CODES = {
-      38: 'up',
-      40: 'down'
+      1: 'up',
+      0: 'down'
     };
 // Creates the array to hold the KEY_CODES and sets all their values
 // to false. Checking true/flase is the quickest way to check status

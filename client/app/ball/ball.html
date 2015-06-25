@@ -1,9 +1,14 @@
+<h3 class="large-mb"><i class="fa fa-angle-right"></i> Levitating Shroom</h3>
+
+
 <div class="row">
   <div class="col-sm-6 col-sm-offset-1 mb ">
     <div class="pn ball" id="game-pn">
       <canvas id="bg"></canvas>
       <canvas id="particles"></canvas>
       <canvas id="game" class="ball"></canvas>
+      <button ng-show="!ballCtrl.playing" ng-click="ballCtrl.createCanvas()"
+              class="btn btn-lg btn-clear-g shroom-btn"><i class="fa fa-repeat"></i>Start!</button>
     </div>
   </div>
 
@@ -14,9 +19,8 @@
         <h5>SHROOM GAME</h5>
       </div>
 
-      <canvas id="doughnut" class="chart chart-doughnut" data="[barrelCtrl.attention, 100-barrelCtrl.attention]"
+      <canvas id="doughnut" class="chart chart-doughnut" data="[ballCtrl.intensity, 100-ballCtrl.intensity]"
               labels="['', '']"></canvas>
-      <i class="fa big-icon fa-eye blink_me " ng-show="barrelCtrl.blinkReady"> </i>
       <h2 class="time-counter"><i class="fa fa-flag"></i></h2>
       <p class="big-timer">{{ballCtrl.realDistance}}</p>
 
@@ -32,4 +36,4 @@
 <input type="number" ng-model="ballCtrl.nSpeed" />
 <input type="number" ng-model="ballCtrl.intensity" />
 <!--<button ng-click="ballCtrl.explode()">Explode!</button>-->
-<button ng-click="ballCtrl.createCanvas()">Start!</button>
+<!--<button ng-click="ballCtrl.createCanvas()">Start!</button>-->
